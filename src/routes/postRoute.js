@@ -1,5 +1,5 @@
 const express = require("express");
-const { TokenVerfication } = require("../middleware/validation");
+const { TokenVerfication, PostBodyValidation } = require("../middleware/validation");
 const { GetAllPost, GetSinglePost, DeletePost, CreatePost } = require("../controller/postController");
 const postRoute = express.Router();
 
@@ -19,7 +19,7 @@ postRoute.get("/find/:postId", TokenVerfication, async (req, res) => {
     })
 });
 
-postRoute.post("/add", TokenVerfication, async (req, res) => {
+postRoute.post("/add", TokenVerfication, PostBodyValidation, async (req, res) => {
     const user = req.user;
 
     const { Article, Image, Title } = req.body;

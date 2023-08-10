@@ -1,13 +1,13 @@
 const express = require("express");
-const { TokenVerfication } = require("../middleware/validation");
+const { TokenVerfication, ProductBodyValidation } = require("../middleware/validation");
 const { CreateProduct, DeleteProduct, GetAllProduct, GetSingleProduct } = require("../controller/productController");
 const productRoute = express.Router();
 
 
 productRoute.get("/fetch", TokenVerfication, async (req, res) => {
-    const products = await GetAllProduct();
+    const response = await GetAllProduct();
 
-    res.status(200).json({ products });
+    res.status(200).json({ response });
 });
 
 productRoute.get("/fetch/:productId", TokenVerfication, async (req, res) => {
@@ -18,7 +18,7 @@ productRoute.get("/fetch/:productId", TokenVerfication, async (req, res) => {
     res.status(product.statusCode).json({ product });
 });
 
-productRoute.post("/add", TokenVerfication, async (req, res) => {
+productRoute.post("/add", TokenVerfication, ProductBodyValidation, async (req, res) => {
     const user = req.user;
 
     const { Article, Image, Title, Price } = req.body;
@@ -33,7 +33,7 @@ productRoute.delete("/delete/:productId", TokenVerfication, async (req, res) => 
 
     const product = await DeleteProduct(productId);
 
-    res.status(200).json({ product })
+    res.status(product.statusCode).json({ product })
 });
 
 module.exports = productRoute;

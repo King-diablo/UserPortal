@@ -44,7 +44,70 @@ function TokenVerfication(req, res, next) {
     }
 }
 
+function ProductBodyValidation(req, res, next) {
+    const { Article, Image, Title, Price } = req.body;
+
+    if (!expressValidations.isLength(Article, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Article is too short"
+        })
+    }
+
+    if (!expressValidations.isLength(Image, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "invalid image"
+        })
+    }
+
+    if (!expressValidations.isLength(Title, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Title is too short"
+        })
+    }
+
+    if (!expressValidations.isNumeric(Price)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Price must be a number"
+        })
+    }
+
+    next();
+}
+
+function PostBodyValidation(req, res, next) {
+    const { Article, Image, Title, Price } = req.body;
+
+    if (!expressValidations.isLength(Article, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Article is too short"
+        })
+    }
+
+    if (!expressValidations.isLength(Image, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "invalid image"
+        })
+    }
+
+    if (!expressValidations.isLength(Title, 4, 20)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Title is too short"
+        })
+    }
+
+    next();
+}
+
 module.exports = {
     signUpValidation,
-    TokenVerfication
+    TokenVerfication,
+    ProductBodyValidation,
+    PostBodyValidation
 }

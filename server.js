@@ -26,7 +26,7 @@ app.post("/api/auth", signUpValidation, async (req, res) => {
 
     const result = await createUser(Name, Email, Gender, password);
 
-    const token = CreateToken(Email, result.data.userId);
+    const token = CreateToken(Email, result.userId);
 
     res.status(result.statusCode).json({
         result,
@@ -38,6 +38,16 @@ app.post("/api/login", async (req, res) => {
 
 
     const result = await findUser(Email, password);
+
+
+    if (result.statusCode !== 200) {
+        res.status(result.statusCode).json({
+            statusCode: result.statusCode,
+            message: result.message,
+        })
+    }
+
+    console.log(result);
 
     const token = CreateToken(Email, result.user.userId);
 
