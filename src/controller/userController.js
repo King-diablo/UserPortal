@@ -1,22 +1,17 @@
 require('dotenv').config();
-const mongoose = require("mongoose");
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 
-const UserSchema = require("../model/UserModel");
-
-const User = new mongoose.model("User", UserSchema);
-
 const saltRounds = process.env.SALT_ROUND;
+const User = require("../model/userModel");
 
 async function createUser(name, email, gender, password) {
     const userId = uuidv4();
-    let newUser = new User({});
 
     const salt = bcrypt.genSaltSync(+saltRounds);
     const hash = bcrypt.hashSync(password, salt);
 
-    newUser = new User({
+    const newUser = new User({
         userId,
         name,
         email,
@@ -25,12 +20,12 @@ async function createUser(name, email, gender, password) {
     });
 
     try {
-        const result = await newUser.save();
-        if (result) {
+        const data = await newUser.save();
+        if (data) {
             return {
                 statusCode: 201,
                 message: "userCreated successfuly",
-                result
+                result: data
             }
         }
     } catch (error) {

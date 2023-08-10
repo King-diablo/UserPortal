@@ -1,6 +1,6 @@
 var expressValidations = require('express-validations');
 
-const { EmailAndPasswordValidation, SendStatus } = require("../helper/helpers");
+const { EmailAndPasswordValidation, SendStatus, VerfyToken } = require("../helper/helpers");
 
 function signUpValidation(req, res, next) {
 
@@ -25,6 +25,26 @@ function signUpValidation(req, res, next) {
     next();
 }
 
+function TokenVerfication(req, res, next) {
+    const token = req.headers.authorization;
+
+    const user = VerfyToken(token);
+
+    if (!user.email) {
+        console.log("invalid");
+        return res.status(409).json({
+            message: "invalid token"
+        });
+    }
+
+    if (user.email) {
+        req.user = user;
+        next();
+        return;
+    }
+}
+
 module.exports = {
     signUpValidation,
+    TokenVerfication
 }
