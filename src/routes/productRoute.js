@@ -7,7 +7,7 @@ const productRoute = express.Router();
 productRoute.get("/fetch", TokenVerfication, async (req, res) => {
     const response = await GetAllProduct();
 
-    res.status(200).json({ response });
+    res.status(response.statusCode).json({ response });
 });
 
 productRoute.get("/fetch/:productId", TokenVerfication, async (req, res) => {
@@ -25,7 +25,7 @@ productRoute.post("/add", TokenVerfication, ProductBodyValidation, async (req, r
 
     const product = await CreateProduct(user.userId, Article, Image, Title, Price);
 
-    res.status(201).json({ product });
+    res.status(product.statusCode).json({ product });
 });
 
 productRoute.delete("/delete/:productId", TokenVerfication, async (req, res) => {

@@ -3,23 +3,25 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
-const { database } = require("./src/config/database");
+
+const { openDatabase } = require("./src/config/database");
 const { createUser, findUser } = require("./src/controller/userController");
 const { signUpValidation } = require("./src/middleware/validation");
 const { CreateToken } = require("./src/helper/helpers");
+
 const productRoute = require("./src/routes/productRoute");
 const postRoute = require("./src/routes/postRoute");
+const jobRoute = require("./src/routes/jobRoute");
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*
-Database startup
-*/
-database
+//#region DatabaseConnection
+openDatabase
+//#endregion
 
 app.post("/api/auth", signUpValidation, async (req, res) => {
     const { Name, Email, Gender, password } = req.body;
@@ -59,10 +61,13 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
+//#region Routes
 
 app.use("/api/product", productRoute);
 app.use("/api/post", postRoute);
+app.use("/api/job", jobRoute);
 
+//#endregion
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

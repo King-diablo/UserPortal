@@ -105,9 +105,66 @@ function PostBodyValidation(req, res, next) {
     next();
 }
 
+function JobValidation(req, res, next) {
+    const { title, amount, description, workPlaceType, companyInfo, salary, companyLogo, } = req.body;
+
+    if (!expressValidations.isLength(title, 4, 200)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "title is invalid"
+        });
+    }
+
+    if (!expressValidations.isNumeric(amount)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "amount is invalid"
+        });
+    }
+
+    if (!expressValidations.isLength(description, 8, 200)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "description is invalid"
+        });
+    }
+
+    if (!expressValidations.isLength(workPlaceType, 8, 200)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "workPlaceType is invalid"
+        });
+    }
+
+    if (!expressValidations.isLength(companyInfo, 8, 200)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "companyinfo is invalid"
+        });
+    }
+
+    if (!expressValidations.isNumeric(salary)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "salary is invalid"
+        });
+    }
+
+    if (!expressValidations.isLength(companyLogo, 4, 200)) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "companyLogo is invalid"
+        });
+    }
+
+    next();
+    return;
+}
+
 module.exports = {
     signUpValidation,
     TokenVerfication,
     ProductBodyValidation,
-    PostBodyValidation
+    PostBodyValidation,
+    JobValidation,
 }
