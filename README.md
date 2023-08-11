@@ -63,88 +63,153 @@ To run this project, you will need to add the following environment variables to
 - PostRoutes
 - ProductRoutes
 
-`baseEndPoint: https://localhost:300/api`
+``
+baseEndPoint: https://localhost:300/api
+``
+
+
 
 ```
 /login
-
-this route is responsible for loging in the user
-Method: POST
-Body:{Email, password}
 ```
+>
+> this route is responsible for loging in the user
+> 
+> Method: POST
+> 
+> Body:{Email, password}
+
 
 ```
 /auth
-
-this route is responsible for creating a user
-Method: POST
-Body:{Name, Email, Gender, password}
 ```
+>
+> this route is responsible for creating a user
+> 
+> Method: POST
+> 
+> Body:{Name, Email, Gender, password}
 
 ```
 /post/add
-
-this route is responsible for creating a post
-Method: POST
-Body:{Article, Image, Title, likeCount, Id, userId}
-
-likeCount-> is default to 0 so its not required
-Id-> is generated automatically
-userId-> is passed in aslong as user is logged in
 ```
+> 
+> this route is responsible for creating a post
+>
+> Method: POST
+> 
+> Body:{Article, Image, Title, likeCount, Id, userId}
+>
+> likeCount-> is default to 0 so its not required
+> 
+> Id-> is generated automatically
+> 
+> userId-> is passed in aslong as user is logged in
 
 ```
 /post/find/:Id
-
-this route is responsible for finding a post by it's Id
-Method: GET
 ```
+
+> this route is responsible for finding a post by it's Id
+> 
+> Method: GET
 
 ```
 /post/find
-
-this route is responsible for finding all the post's
-Method: GET
 ```
+
+> this route is responsible for finding all the post's
+> Method: GET
 
 ```
 /post/delete/:Id
-
-this route is responsible for removing a post by it's Id
-Method: DELETE
 ```
+
+> this route is responsible for removing a post by it's Id
+> 
+> Method: DELETE
+
 
 ```
 /product/add
-
-this route is responsible for creating a new product
-Method: POST
-Body:{Article, Image, Title, price, Id, userId}
-
-Id-> is generated automatically
-userId-> is passed in aslong as user is logged in
 ```
+
+> this route is responsible for creating a new product
+> 
+> Method: POST
+> 
+> Body:{Article, Image, Title, price, Id, userId}
+> 
+> Id-> is generated automatically
+> 
+> userId-> is passed in aslong as user is logged in
 
 ```
 /product/fetch/:Id
-
-this route is responsible for fetching a single product by it's Id
-Method: GET
 ```
+
+> this route is responsible for fetching a single product by it's Id
+> 
+> Method: GET
+>
 
 ```
 /product/fetch
-
-this route is responsible for fetching all products
-Method: GET
 ```
+
+> this route is responsible for fetching all products
+> 
+> Method: GET
 
 ```
 /product/delete/:Id
-
-this route is responsible for deleting a product by it's Id
-Method: Id
 ```
+
+> this route is responsible for deleting a product by it's Id
+> 
+> Method: delete
+
+#####
+
+```
+/job/create
+```
+
+> this route is responsible for creating a new jobs
+> 
+> Method: POST
+> 
+> Body:{title, amount, description, workPlaceType, companyInfo, salary, companyLogo}
+> 
+> Id-> is generated automatically
+> 
+> userId-> is passed in aslong as user is logged in
+
+```
+/job/find/:jobId
+```
+
+> this route is responsible for fetching a single product by it's Id
+> 
+> Method: GET
+>
+
+```
+/job/find
+```
+
+> this route is responsible for fetching all jobs
+> 
+> Method: GET
+
+```
+/job/delete/:jobId
+```
+
+> this route is responsible for deleting a job by it's Id
+> 
+> Method: delete
+
 ## Authors
 
 - [@kingdiablo](https://www.github.com/king-diablo)
