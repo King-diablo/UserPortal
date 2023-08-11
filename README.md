@@ -210,6 +210,18 @@ baseEndPoint: https://localhost:300/api
 > 
 > Method: delete
 
+## Documentation
+
+[Test Endpoints](https://documenter.getpostman.com/view/22983759/2s9Xy3tC1D)
+
+> Notice
+
+> Authorization token will be given after signup and or login
+>
+> Authorization is required for all endpoint aside signup and login
+>
+
+
 ## Authors
 
 - [@kingdiablo](https://www.github.com/king-diablo)

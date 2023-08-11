@@ -129,7 +129,7 @@ function JobValidation(req, res, next) {
         });
     }
 
-    if (!expressValidations.isLength(workPlaceType, 8, 200)) {
+    if (!expressValidations.isLength(workPlaceType, 4, 200)) {
         return res.status(404).json({
             statusCode: 404,
             message: "workPlaceType is invalid"
