@@ -2,7 +2,7 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 
 
-const url = process.env.DATABASE_URL;
+const url = process.env.DATABASE_MAIN_URL;
 const databaseName = "inbrand";
 const connectionString = url + "/" + databaseName;
 
