@@ -20,6 +20,10 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //#region DatabaseConnection
+
+app.get("/", (req, res) => {
+    res.redirect("https://documenter.getpostman.com/view/22983759/2s9Xy3tC1D");
+})
 openDatabase
 //#endregion
 
