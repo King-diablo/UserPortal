@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 
 
 const url = process.env.DATABASE_MAIN_URL;
-const databaseName = "inbrand";
-const connectionString = url + "/" + databaseName;
+const connectionString = url;
 
 const openDatabase = mongoose.connect(connectionString).then(() => {
     console.log("Connected to the database");
