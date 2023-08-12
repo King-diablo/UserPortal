@@ -27,7 +27,7 @@ To run this project, you will need to add the following environment variables to
 
 `PORT`
 
-`DATABASE_URL`
+`DATABASE_MAIN_URL`
 
 `SALT_ROUND`
 
