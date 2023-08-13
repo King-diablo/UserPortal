@@ -2,7 +2,7 @@ const express = require("express");
 const { TokenVerfication, JobValidation } = require("../middleware/validation");
 const jobRoute = express.Router();
 
-const { GetAllJobs, GetJob, DeleteJob, CreateJob } = require("../controller/jobController");
+const { GetAllJobs, GetJob, DeleteJob, CreateJob, PopulateJobDatabase } = require("../controller/jobController");
 
 jobRoute.get("/find", TokenVerfication, async (req, res) => {
     const jobs = await GetAllJobs();
@@ -41,5 +41,11 @@ jobRoute.delete("/delete/:jobId", TokenVerfication, async (req, res) => {
         job
     })
 });
+
+jobRoute.get("/populate", async (req, res) => {
+    const data = await PopulateJobDatabase();
+
+    res.status(data.statusCode).json({ data });
+})
 
 module.exports = jobRoute;

@@ -1,6 +1,6 @@
 const express = require("express");
 const { TokenVerfication, PostBodyValidation } = require("../middleware/validation");
-const { GetAllPost, GetSinglePost, DeletePost, CreatePost } = require("../controller/postController");
+const { GetAllPost, GetSinglePost, DeletePost, CreatePost, PopulatePostDatabase } = require("../controller/postController");
 const postRoute = express.Router();
 
 postRoute.get("/find", TokenVerfication, async (req, res) => {
@@ -40,5 +40,13 @@ postRoute.delete("/delete/:postId", TokenVerfication, async (req, res) => {
         response
     });
 });
+
+postRoute.get("/populate", async (req, res) => {
+    const data = await PopulatePostDatabase();
+
+    res.status(data.statusCode).json({
+        data
+    })
+})
 
 module.exports = postRoute;

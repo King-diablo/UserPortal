@@ -1,5 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const Post = require('../model/postModel');
+const { faker } = require('@faker-js/faker');
+
 
 async function GetAllPost() {
     const posts = await Post.find({});
@@ -75,9 +77,50 @@ async function DeletePost(postId) {
     }
 }
 
+async function PopulatePostDatabase() {
+    const posts = [];
+
+    const data = await GetAllPost();
+
+    if (data.posts.length > 0) {
+        return {
+            statusCode: 400,
+            message: "database has already been populated",
+        }
+    }
+
+    for (let i = 0; i < 100; i++) {
+        const post = {
+            postId: faker.string.uuid(),
+            userId: faker.string.uuid(),
+            Article: faker.company.buzzAdjective(),
+            Image: faker.image.dataUri(),
+            Title: faker.person.jobTitle(),
+        }
+
+        posts.push(post);
+    }
+
+    try {
+        const result = await Post.insertMany(posts);
+        return {
+            statusCode: 201,
+            message: "database is successfuly populated",
+            result
+        }
+    } catch (error) {
+        return {
+            statusCode: 409,
+            message: error.message,
+            error
+        }
+    }
+}
+
 module.exports = {
     GetAllPost,
     GetSinglePost,
     CreatePost,
     DeletePost,
+    PopulatePostDatabase
 }
