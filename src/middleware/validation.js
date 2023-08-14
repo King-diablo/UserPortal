@@ -31,7 +31,7 @@ function TokenVerfication(req, res, next) {
     const user = VerfyToken(token);
 
     if (!user.email) {
-        console.log("invalid");
+        //console.log("invalid");
         return res.status(409).json({
             message: "invalid token"
         });

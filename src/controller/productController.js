@@ -50,7 +50,7 @@ async function GetSingleProduct(productId) {
 
     const product = await Product.findOne({ productId: productId });
 
-    console.log(product);
+    //console.log(product);
 
     if (product === null) {
         return {

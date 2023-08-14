@@ -62,7 +62,7 @@ async function CreatePost(userId, Article, Image, Title) {
 async function DeletePost(postId) {
     const post = await Post.findOneAndDelete({ postId });
 
-    console.log(post);
+    //console.log(post);
 
     if (post === null) {
         return {

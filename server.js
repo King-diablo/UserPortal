@@ -32,7 +32,11 @@ app.post("/api/auth", signUpValidation, async (req, res) => {
 
     const result = await createUser(Name, Email, Gender, password);
 
-    const token = CreateToken(Email, result.userId);
+    //console.log(result.data.userId);
+
+    const token = CreateToken(Email, result.data.userId);
+
+    //console.log(token);
 
     res.status(result.statusCode).json({
         result,
@@ -47,15 +51,17 @@ app.post("/api/login", async (req, res) => {
 
 
     if (result.statusCode !== 200) {
-        res.status(result.statusCode).json({
+        return res.status(result.statusCode).json({
             statusCode: result.statusCode,
             message: result.message,
         })
     }
 
-    console.log(result);
+    //console.log(result.user.userId);
 
     const token = CreateToken(Email, result.user.userId);
+
+    //console.log(token);
 
     if (result) {
         res.status(result.statusCode).json({

@@ -25,7 +25,7 @@ async function createUser(name, email, gender, password) {
             return {
                 statusCode: 201,
                 message: "userCreated successfuly",
-                result: data
+                data
             }
         }
     } catch (error) {

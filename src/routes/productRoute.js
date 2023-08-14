@@ -40,7 +40,7 @@ productRoute.get("/populate", async (req, res) => {
     const data = await PopulateProductDatabase();
 
     res.status(data.statusCode).json({ data });
-    console.log("dataResult: " + data);
+    //console.log("dataResult: " + data);
 })
 
 

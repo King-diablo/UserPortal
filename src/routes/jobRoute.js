@@ -25,6 +25,8 @@ jobRoute.post("/create", TokenVerfication, JobValidation, async (req, res) => {
 
     const user = req.user;
 
+    //console.log(user);
+
     const response = await CreateJob(user.userId, title, amount, description, workPlaceType, companyInfo, salary, companyLogo);
 
     res.status(response.statusCode).json({
